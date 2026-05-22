@@ -1,0 +1,18 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "transactions": {
+      ".indexOn": ["merchant_id", "device_id", "status", "created_at"]
+    },
+    "withdrawals": {
+      ".indexOn": ["merchant_id", "status", "created_at"]
+    },
+    "upi_ids": {
+      ".indexOn": ["status", "upi_address"]
+    },
+    "sms_logs": {
+      ".indexOn": ["device_id", "txn_id"]
+    }
+  }
+}
