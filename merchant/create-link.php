@@ -2,7 +2,8 @@
 require_once __DIR__.'/../config.php';
 require_once __DIR__.'/../includes/auth.php';
 require_once __DIR__.'/../includes/merchant_layout.php';
-$merchant = merchantAuth();
+$m = merchantAuth();
+$merchant = fbGet('merchants/' . $m['merchant_id']);
 $settings = getSettings();
 merchantLayoutHead('Create Payment Link');
 ?>
