@@ -1,0 +1,42 @@
+# Ghora Pay — Render.com Deployment Config
+# Docs: https://render.com/docs/render-yaml-reference
+#
+# Deploy steps:
+#  1. Push this repo to GitHub/GitLab
+#  2. Go to render.com → New → Blueprint
+#  3. Connect your repo — Render auto-reads this file
+#  4. Fill in environment variable values in the Render dashboard
+
+services:
+  - type: web
+    name: ghorapay
+    runtime: docker
+    plan: free                  # Free tier: 512MB RAM, spins down after 15 min
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+
+    # ── Health check ─────────────────────────────────────────────────────────
+    healthCheckPath: /api/get_settings.php
+
+    # ── Environment variables ─────────────────────────────────────────────────
+    # Set these in Render Dashboard → your service → Environment
+    # DO NOT commit real values here — use Render's secret management
+    envVars:
+      - key: FIREBASE_URL
+        value: https://YOUR-PROJECT-default-rtdb.firebaseio.com
+        # ↑ Replace with your actual Firebase DB URL
+
+      - key: SITE_URL
+        value: https://YOUR-APP-NAME.onrender.com
+        # ↑ Replace after Render gives you the URL (or use custom domain)
+
+      - key: API_KEY
+        generateValue: true
+        # ↑ Render auto-generates a secure random value — copy it to your Android app
+
+      - key: CRON_SECRET
+        generateValue: true
+        # ↑ Render auto-generates — copy to cron-job.org as X-Cron-Secret header
+
+      - key: PHP_ENV
+        value: production
