@@ -1,7 +1,14 @@
 <?php
 require_once __DIR__ . '/../config.php';
 setCorsHeaders();
-
+// Rate limit: max 5 attempts per IP per 10 minutes
+$ip  = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$key = 'ratelimit_utr_' . md5($ip);
+$hit = (int)(fbGet("rate_limits/$key/count") ?? 0);
+$ts  = (int)(fbGet("rate_limits/$key/reset_at") ?? 0);
+if (time() > $ts) { $hit = 0; $ts = time() + 600; }
+if ($hit >= 5) jsonResponse(['success'=>false,'message'=>'Too many attempts. Please wait 10 minutes.'], 429);
+fbMultiUpdate(["rate_limits/$key/count" => $hit+1, "rate_limits/$key/reset_at" => $ts]);
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') jsonResponse(['success'=>false,'message'=>'POST required'],405);
 
 $txn_id = trim($_POST['txn_id'] ?? '');
