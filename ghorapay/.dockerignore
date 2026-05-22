@@ -1,0 +1,9 @@
+.git
+.gitignore
+*.md
+android/
+db/generate_admin_hash.php
+render.yaml
+.dockerignore
+*.log
+*.zip

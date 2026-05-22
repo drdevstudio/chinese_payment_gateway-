@@ -1,0 +1,45 @@
+# Ghora Pay — Apache .htaccess
+Options -Indexes
+Options -ExecCGI
+
+# ── Rewrite engine ────────────────────────────────────────────────────────────
+RewriteEngine On
+RewriteBase /
+
+# Force HTTPS (Render handles TLS termination — trust X-Forwarded-Proto)
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── Block sensitive files ─────────────────────────────────────────────────────
+RewriteRule ^(config\.php|composer\.json|\.env|Dockerfile|render\.yaml) - [F,L]
+RewriteRule ^(includes|db|android|docker)/ - [F,L]
+
+# ── Security headers ──────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
+
+# ── PHP settings ──────────────────────────────────────────────────────────────
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value session.cookie_httponly 1
+    php_value session.use_strict_mode 1
+    php_value session.cookie_samesite Strict
+</IfModule>
+
+# ── Cache static assets ───────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css             "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png            "access plus 1 month"
+    ExpiresByType image/jpeg           "access plus 1 month"
+    ExpiresByType image/svg+xml        "access plus 1 month"
+    ExpiresByType image/x-icon         "access plus 1 year"
+</IfModule>
