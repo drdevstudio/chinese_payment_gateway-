@@ -109,12 +109,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div class="modal-title"><i class="fas fa-shield-halved" style="color:var(--primary)"></i> Two-Factor Auth</div>
     <div class="modal-sub">Enter the 6-digit code from your Google Authenticator app.</div>
     <div class="otp-inputs" id="otpInputs">
-      <input class="otp-input" maxlength="1" data-idx="0">
-      <input class="otp-input" maxlength="1" data-idx="1">
-      <input class="otp-input" maxlength="1" data-idx="2">
-      <input class="otp-input" maxlength="1" data-idx="3">
-      <input class="otp-input" maxlength="1" data-idx="4">
-      <input class="otp-input" maxlength="1" data-idx="5">
+      <input class="otp-input" maxlength="1" data-idx="0" inputmode="numeric" pattern="[0-9]">
+<input class="otp-input" maxlength="1" data-idx="1" inputmode="numeric" pattern="[0-9]">
+<input class="otp-input" maxlength="1" data-idx="2" inputmode="numeric" pattern="[0-9]">
+<input class="otp-input" maxlength="1" data-idx="3" inputmode="numeric" pattern="[0-9]">
+<input class="otp-input" maxlength="1" data-idx="4" inputmode="numeric" pattern="[0-9]">
+<input class="otp-input" maxlength="1" data-idx="5" inputmode="numeric" pattern="[0-9]">
     </div>
     <button class="btn-submit" id="totpBtn" onclick="verifyTotp()"><i class="fas fa-check"></i> Verify</button>
   </div>
