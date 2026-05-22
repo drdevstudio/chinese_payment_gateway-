@@ -62,8 +62,5 @@ if (is_array($smsLog) && ($smsLog['txn_id'] ?? null) === null) {
 
 } else {
     // Check if UTR exists at all (already claimed)
-    if (is_array($smsLog)) {
-        jsonResponse(['success'=>false,'message'=>'This UTR has already been claimed']);
-    }
     jsonResponse(['success'=>false,'message'=>'UTR not found in our records. Please wait for SMS confirmation or contact support.']);
 }
