@@ -6,6 +6,7 @@ FROM php:8.2-apache-bullseye
 # ── System deps ───────────────────────────────────────────────────────────────
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libssl-dev \
+        libcurl4-openssl-dev \
         ca-certificates \
         curl \
     && rm -rf /var/lib/apt/lists/*
