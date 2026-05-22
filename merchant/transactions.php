@@ -9,8 +9,8 @@ $status_filter = $_GET['status'] ?? 'all';
 $allowed_statuses = ['all','pending','success','failed','expired'];
 if (!in_array($status_filter, $allowed_statuses, true)) $status_filter = 'all';
 
-$txnMap  = fbQuery('transactions', 'merchant_id', $mid);
-$txnList = array_values($txnMap);
+$txnMap  = fbQuery('transactions', 'merchant_id', $mid) ?? [];
+$txnList = array_values((array)$txnMap);
 usort($txnList, fn($a,$b) => strcmp($b['created_at']??'', $a['created_at']??''));
 if ($status_filter !== 'all') {
     $txnList = array_values(array_filter($txnList, fn($t) => ($t['status']??'') === $status_filter));
