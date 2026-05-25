@@ -13,7 +13,7 @@ adminLayoutHead('UPI Management');
     <div class="card-title"><i class="fas fa-qrcode" style="color:var(--success)"></i> UPI IDs</div>
     <button class="btn btn-primary btn-sm" onclick="openAddModal()"><i class="fas fa-plus"></i> Add UPI</button>
   </div>
-  <div style="overflow-x:auto"><table>
+  <div class="table-wrap"><table>
     <thead><tr><th>Device ID</th><th>UPI Address</th><th>Holder</th><th>Daily Limit</th><th>Today Recv</th><th>Remaining</th><th>Status</th><th>Actions</th></tr></thead>
     <tbody id="upiBody"><tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:20px"><i class="fas fa-spinner fa-spin"></i></td></tr></tbody>
   </table></div>
