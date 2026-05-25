@@ -58,13 +58,15 @@ if (!$isLive || !hash_equals($expected_sig, strtolower($signature))) {
     jsonResponse(['success'=>false,'message'=>'Invalid signature or credentials'], 401);
 }
 
-// Domain whitelist
+// Domain whitelist — skip check if request comes from the same site (merchant panel)
 if (!empty($merchant['domain'])) {
     $origin = $_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? '');
     if (!empty($origin)) {
+        $siteHost    = strtolower(parse_url(SITE_URL, PHP_URL_HOST) ?: '');
         $allowedHost = strtolower(parse_url(trim($merchant['domain']), PHP_URL_HOST) ?: $merchant['domain']);
         $requestHost = strtolower(parse_url($origin, PHP_URL_HOST) ?: $origin);
-        if ($requestHost && $allowedHost && $requestHost !== $allowedHost) {
+        // Allow if request comes from own site (merchant dashboard) or whitelisted domain
+        if ($requestHost && $allowedHost && $requestHost !== $allowedHost && $requestHost !== $siteHost) {
             jsonResponse(['success'=>false,'message'=>'Origin domain not whitelisted','domain_error'=>true], 403);
         }
     }
