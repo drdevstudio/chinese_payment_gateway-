@@ -42,7 +42,7 @@ merchantLayoutHead('Create Payment Link');
       <button class="btn btn-outline" onclick="copyUrl()" title="Copy"><i class="fas fa-copy"></i></button>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px" class="txn-info-grid">
     <div>
       <label class="form-label">Ghora Pay TXN ID</label>
       <input type="text" id="txnId" class="form-control" readonly>
@@ -227,4 +227,7 @@ async function md5Hash(str) {
   return md5(str);
 }
 </script>
+<style>
+@media(max-width:480px){.txn-info-grid{grid-template-columns:1fr!important}}
+</style>
 <?php merchantLayoutFooter();?>
