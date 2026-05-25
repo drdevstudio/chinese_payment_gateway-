@@ -260,7 +260,7 @@ body {
 .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
 
 /* ===== TABLE ===== */
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 thead th {
     background: var(--surface2);
@@ -383,11 +383,21 @@ tbody tr:hover td { background: rgba(255,255,255,0.02); }
     .hamburger { display: flex; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .grid-2 { grid-template-columns: 1fr; }
-    .page-body { padding: 16px; }
+    .page-body { padding: 14px; }
+    .topbar { padding: 0 14px; gap: 10px; }
+    .topbar-title { font-size: 15px; }
+    table { font-size: 12px; }
+    th, td { padding: 9px 10px; }
+    .card-header { flex-direction: column; align-items: flex-start; }
+    .modal { padding: 20px; }
+    .modal-title { font-size: 16px; }
 }
 @media (max-width: 480px) {
-    .stats-grid { grid-template-columns: 1fr; }
-    .card { padding: 16px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .card { padding: 14px; }
+    .topbar { padding: 0 12px; }
+    .page-body { padding: 10px; }
+    .btn { padding: 8px 12px; font-size: 13px; }
 }
 </style>
 HTML;
