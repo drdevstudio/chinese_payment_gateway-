@@ -85,7 +85,7 @@ adminLayoutHead('Dashboard');
   <div class="stat-card primary"><div class="stat-icon primary"><i class="fas fa-qrcode"></i></div><div class="stat-value"><?= $stats['active_upi'] ?></div><div class="stat-label">Active UPI IDs</div></div>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px" class="dash-grid">
+<div class="dash-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
 <div class="card">
   <div class="card-header">
     <div class="card-title"><i class="fas fa-receipt" style="color:var(--primary)"></i> Recent Transactions</div>
@@ -133,5 +133,8 @@ adminLayoutHead('Dashboard');
 </div>
 </div>
 </div>
-<style>.dash-grid{@media(max-width:768px){grid-template-columns:1fr!important}}</style>
+<style>
+@media(max-width:900px){.dash-grid{grid-template-columns:1fr!important}}
+@media(max-width:480px){.stats-grid{grid-template-columns:1fr 1fr!important}}
+</style>
 <?php adminLayoutFooter(); ?>
