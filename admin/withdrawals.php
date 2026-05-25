@@ -18,7 +18,7 @@ adminLayoutHead('Withdrawals');
       <button class="btn btn-outline btn-sm" id="f_all" onclick="loadW('all',this)">All</button>
     </div>
   </div>
-  <div style="overflow-x:auto"><table>
+  <div class="table-wrap"><table>
     <thead><tr><th>Merchant</th><th>Amount</th><th>UPI</th><th>Status</th><th>Note</th><th>Date</th><th>Actions</th></tr></thead>
     <tbody id="wBody"><tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:20px"><i class="fas fa-spinner fa-spin"></i></td></tr></tbody>
   </table></div>
