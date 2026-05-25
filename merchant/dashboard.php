@@ -77,7 +77,7 @@ merchantLayoutHead('Dashboard');
   <?php if(empty($recent)): ?>
   <p style="text-align:center;color:var(--text-muted);padding:24px 0;font-size:14px">No transactions yet. <a href="<?=SITE_URL?>/merchant/create-link.php">Create your first payment link</a></p>
   <?php else: ?>
-  <div style="overflow-x:auto"><table>
+  <div class="table-wrap"><table>
     <thead><tr><th>TXN ID</th><th>Amount</th><th>Order No</th><th>Status</th><th>Time</th></tr></thead>
     <tbody>
     <?php foreach($recent as $t): ?>
