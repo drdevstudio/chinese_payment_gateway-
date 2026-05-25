@@ -64,7 +64,7 @@ merchantLayoutHead('Withdraw Funds');
   <?php if(empty($wList)): ?>
   <p style="text-align:center;color:var(--text-muted);padding:20px 0;font-size:14px">No withdrawals yet.</p>
   <?php else: ?>
-  <div style="overflow-x:auto"><table>
+  <div class="table-wrap"><table>
     <thead><tr><th>Amount</th><th>UPI</th><th>Status</th><th>Note</th><th>Date</th></tr></thead>
     <tbody>
     <?php foreach($wList as $w): ?>
